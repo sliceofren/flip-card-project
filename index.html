@@ -9,39 +9,40 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
       height: 100vh;
       margin: 0;
       background-color: #f4f4f9;
     }
 
-    .card-container {
-      perspective: 1000px;
-    }
-
     .flip-card {
-      width: 250px;
-      height: 350px;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s;
-    }
-
-    .flip-card:hover {
-      transform: rotateY(180deg);
+      width: 200px;
+      height: 300px;
+      perspective: 1000px; /* This sets up the 3D effect */
     }
 
     .flip-card-inner {
-      position: absolute;
+      position: relative;
       width: 100%;
       height: 100%;
-      backface-visibility: hidden;
+      transform-style: preserve-3d; /* Allow content to be 3D */
+      transition: transform 0.5s; /* Smooth animation */
+    }
+
+    /* Flip the card when the 'flipped' class is added */
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
     }
 
     .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden; /* Prevents the back from showing when flipped */
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100%;
       font-size: 1.5rem;
       text-align: center;
       background-color: #ffffff;
@@ -49,22 +50,45 @@
     }
 
     .flip-card-back {
-      transform: rotateY(180deg);
+      transform: rotateY(180deg); /* Rotate the back side 180 degrees */
       background-color: #f9c74f;
     }
   </style>
 </head>
 <body>
 
-  <div class="card-container">
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <p>Click to Flip</p>
-        </div>
-        <div class="flip-card-back">
-          <p>Your quote or rule goes here!</p>
-        </div>
+  <!-- First Card -->
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <p>#1</p>
+      </div>
+      <div class="flip-card-back">
+        <p>Believe in people.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Card -->
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <p>#2</p>
+      </div>
+      <div class="flip-card-back">
+        <p>Embrace challenges.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Third Card -->
+  <div class="flip-card" onclick="this.classList.toggle('flipped')">
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <p>#3</p>
+      </div>
+      <div class="flip-card-back">
+        <p>Stay focused and positive.</p>
       </div>
     </div>
   </div>
